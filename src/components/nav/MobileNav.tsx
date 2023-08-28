@@ -6,14 +6,19 @@ import { usePathname } from 'next/navigation'
 const MobileNav = () => {
     const [isOpen, setIsOpen] = useState(false)
     const pathname = usePathname()
-    // a tags to force hard refresh & close modal
+    useEffect(() => {
+        if (isOpen) { document.body.classList.add('stop-scroll') }
+        else { document.body.classList.remove('stop-scroll') }
+    }, [isOpen])
+
+
     return (
         <div className="md:hidden flex">
             <Button onClick={() => setIsOpen(!isOpen)} className="z-[101] hover:bg-transparent transition-all" variant="ghost">
                 {isOpen ? <X className="w-7 h-7 text-zinc-200" /> : <AlignJustify className="w-7 h-7 text-zinc-200" />}
             </Button>
-            {isOpen && <div className="fixed top-0 left-0 w-[100dvw] h-screen">
-                <div className="w-full h-full bg-zinc-950 overflow-auto relative px-8 pt-48">
+            {isOpen && <div className="inset-0 absolute top-0 left-0 w-[100dvw] h-screen">
+                <div className={`fixed top-0 left-0 w-full h-screen bg-zinc-950 overflow-auto px-8 pt-48 ${isOpen ? 'block' : 'hidden'}`}>
                     <div className="flex flex-col w-full">
                         <a style={{ animationDelay: `0.15s`, animationFillMode: "backwards" }} href="/resume" className={" animate-fade-down px-4 py-8 border-b " + (pathname.startsWith("/resume") ? 'border-white text-white' : 'border-zinc-600 text-slate-200')}>
                             Resume

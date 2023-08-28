@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en" className='scroll-smooth overflow-x-hidden'>
       <body className={cn('text-slate-200 !bg-black w-[100dvw] pr-2', inter.className)}>
         <Navbar />
-        <main className='mt-16 min-h-full '>{children}</main>
+        <main className='content mt-16 min-h-full '>{children}</main>
       </body>
     </html>
   )

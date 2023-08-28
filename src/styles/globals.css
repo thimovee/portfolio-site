@@ -21,6 +21,13 @@ body::after {
   transform: translateZ(0px);
 }
 
+.stop-scroll {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
 body::before {
   background-position: 0% 0%;
   background-repeat: repeat;
